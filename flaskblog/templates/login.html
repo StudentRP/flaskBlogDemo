@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{%block content%}
+
+        <div class="content-section">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }} <!-- adds cross site request forgery token (part of secret key protection-->
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4"> Login </legend>
+
+                    <div class="form-group">
+                        {{ form.email.label(class="form-control-label") }}<!-- each field sends back errors if problem -->
+
+                        {% if form.email.errors %}<!-- only if error detected on posting evaluates to true -->
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control form-control-lg") }}<!-- runs on valid input -->
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label(class="form-control-label") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control form-control-lg is-invalid") }}<!-- runs if errors -->
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}<!-- runs if NO errors -->
+                            {{ form.password(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                        <div class="form-check">
+                                {{ form.remember(class="form-check-input") }}
+                                {{ form.remember.label(class="form-check-label") }}
+                        </div>
+                </fieldset>
+                 <div class="form-group">
+                     {{ form.submit(class="btn btn-outline-info") }} <!-- class is all bootstrap -->
+                 </div>
+                    <small class="test-muted ml-2">
+                            <a href="#">Password Reset</a> <!-- href='#' is placeholder -->
+                    </small>
+            </form>
+        </div>
+        <div class="border-top-pt-3">
+            <small class="text-muted">
+                    Register
+                <a class="ml-2" href="{{url_for('register') }}" > Sign Up</a>
+            </small>
+
+
+
+        </div>
+
+{% endblock content %}
+
+
+

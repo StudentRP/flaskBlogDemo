@@ -1,0 +1,40 @@
+############################# First Blog #################
+This is a test to determine functionality of Flask and other modular components.
+Scripts will contain high degree of notation and explanation to aid learning curve.
+
+Aim:
+To build functional full stack website that provides login and services to a user with
+numerous functional HTML pages.
+
+
+Learning curve:
+
+How to make/use packages and core elements (__init__.py)
+Flask, module components
+jinja2, syntax and usage
+flask-SQLAlchemy module as Object Relational Mapper, usage/creation/dummyData through terminal, securing against SQL injection, use of models for table creation and relationships
+flask-WTF, forms for  creating html form boxes with validators
+email-validator, for wtf email validation
+secrets, module preventing CSRF
+flask-bcrypt,  module hashing passwords (generate and check) prior to db entry
+flask-login, creating active user sessions and preferential site access and rememberme functionality with UserMixin
+
+
+flow:
+
+forms
+route
+html
+route
+validation
+reroute
+sign in
+db verification
+usermixer remembers user id as current user through login process. see Flask webdev pg 113
+
+
+
+links of interest:
+
+https://flask-wtf.readthedocs.io/en/stable/quickstart.html
+https://flask-login.readthedocs.io/en/latest/

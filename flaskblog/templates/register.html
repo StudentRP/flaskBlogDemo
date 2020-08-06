@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{%block content%}
+        <div class="content-section">
+            <form method="POST" action=""><!-- sets as post return for security, info wont be in address bar -->
+                {{ form.hidden_tag() }} <!-- adds cross site request forgery token (part of secret key protection) to all boxes in code block-->
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4"> Register Today </legend>
+                    <div class="form-group">
+                        <!-- form class.var-names-->
+                        {{ form.username.label(class="form-control-label") }} <!-- calls username from forms.py as label-->
+                        <!-- bootstrap validation, captured in ( ), highlight red with explanation on site -->
+                         {% if form.username.errors %}
+                            {{ form.username(class="form-control form-control-lg is-invalid") }} <!-- calls username from forms.py as box -->
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %} <!-- form generate errors (validators) and this is just looping over them-->
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label(class="form-control-label") }}<!-- each field sends back errors if problem -->
+                        {% if form.email.errors %}<!-- only if error detected on posting evaluates to true -->
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control form-control-lg") }}<!-- runs on valid input -->
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label(class="form-control-label") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control form-control-lg is-invalid") }}<!-- runs if errors -->
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}<!-- runs if NO errors -->
+                            {{ form.password(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.confirm_password.label(class="form-control-label") }}
+                        <!-- bootstrap validation highlight red with explanation on site -->
+                        {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}<!-- is-invalid more bs -->
+                            <div class="invalid-feedback"><!-- bootstrap -->
+                                {% for error in form.confirm_password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirm_password(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                 <div class="form-group"><!-- class is all bootstrap -->
+                     {{ form.submit(class="btn btn-outline-info") }} <!-- submit Post form back to original route-->
+                 </div>
+            </form>
+        </div>
+        <div class="border-top-pt-3">
+            <small class="text-muted"> Already Have Account?
+                <a class="ml-2" href="{{url_for('login') }}" > <!-- is the function name in routes.py not the
+                decorator-->Sign In</a>
+            </small>
+        </div>
+
+{% endblock content %}
+
+<!-- errors are generated from either the form or validators from forms.py, not sure yet! know stored as dict-->
+
+

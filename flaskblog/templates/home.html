@@ -1,0 +1,22 @@
+<!--link to layout template and extends through inheritance-->
+
+{% extends "layout.html" %} <!-- links to template html-->
+
+
+
+{%block content %}
+    {% for post in posts  %} <!--  loops over posts from testScript-->
+<!--creates post blocks and changes how its displayed -->
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author }}</a> <!--dot notation to access attribs from post var passed in from testscript,py -->
+              <small class="text-muted">{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %} <!-- content not needed, used only for explicit preventing confusion when more blocks-->
