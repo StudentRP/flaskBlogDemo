@@ -30,7 +30,7 @@ validation
 reroute
 sign in
 db verification
-usermixer remembers user id as current user through login process. see Flask webdev pg 113
+UserMixer remembers user id as current user through login process. see Flask webdev pg 113
 
 
 
