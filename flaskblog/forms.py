@@ -47,6 +47,7 @@ class RegistrationForm(FlaskForm):
         if user: # if user is None wont throw error
             raise ValidationError('email already in use')
 
+
 class LoginForm(FlaskForm):
     """sets username field with min and max char validators"""
     """ check valid email"""
